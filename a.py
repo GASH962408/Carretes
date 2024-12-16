@@ -12,22 +12,69 @@ def buscar_carrete(datos):
         print("Por favor, ingrese una cantidad válida de cable.")
         return
 
-    # Buscar el carrete más adecuado (el inmediato superior) con merma >= 30
+    # Opción 1: Usar un solo carrete (con merma >= 30)
     carretes = sorted(datos["carretes"].items(), key=lambda x: x[1])  # Ordenar de menor a mayor
-    carrete_ideal = None
+    carrete_ideal_1 = None
 
     for carrete_id, longitud in carretes:
-        merma = longitud - cable_requerido
+        merma = round(longitud - cable_requerido, 2)
         if longitud >= cable_requerido and merma >= 30:
-            carrete_ideal = (carrete_id, longitud, merma)
+            carrete_ideal_1 = (carrete_id, longitud, merma)
             break
 
-    if not carrete_ideal:
-        print(f"No es posible cumplir con el requerimiento de {cable_requerido} metros usando un solo carrete, con una merma de al menos 30 metros.")
-    else:
-        carrete_id, longitud_carrete, merma = carrete_ideal
-        print(f"El carrete {carrete_id} puede cumplir con el requerimiento. Tiene {longitud_carrete} metros disponibles.")
+    # Opción 2: Usar dos carretes (dividir la cantidad por la mitad)
+    mitad_cable_requerido = cable_requerido / 2
+    carretes_ideal_2 = []
+    carretes_usados_2 = set()  # Para registrar los carretes ya usados
+
+    for _ in range(2):
+        for carrete_id, longitud in carretes:
+            if carrete_id not in carretes_usados_2:  # Verificar que el carrete no haya sido usado
+                merma = round(longitud - mitad_cable_requerido, 2)
+                if longitud >= mitad_cable_requerido and merma >= 0:
+                    carretes_ideal_2.append((carrete_id, longitud, merma))
+                    carretes_usados_2.add(carrete_id)  # Marcar el carrete como usado
+                    break
+
+    # Opción 3: Usar tres carretes (dividir la cantidad por tres)
+    tercio_cable_requerido = cable_requerido / 3
+    carretes_ideal_3 = []
+    carretes_usados_3 = set()  # Para registrar los carretes ya usados
+
+    for _ in range(3):
+        for carrete_id, longitud in carretes:
+            if carrete_id not in carretes_usados_3:  # Verificar que el carrete no haya sido usado
+                merma = round(longitud - tercio_cable_requerido, 2)
+                if longitud >= tercio_cable_requerido and merma >= 0:
+                    carretes_ideal_3.append((carrete_id, longitud, merma))
+                    carretes_usados_3.add(carrete_id)  # Marcar el carrete como usado
+                    break
+
+    # Mostrar los resultados
+
+    if carrete_ideal_1:
+        carrete_id, longitud_carrete, merma = carrete_ideal_1
+        print(f"Opción 1: Usar 1 carrete: El carrete {carrete_id} puede cumplir con el requerimiento. Tiene {longitud_carrete} metros disponibles.")
         print(f"Merma después de usar el carrete: {merma} metros.")
+    else:
+        print(f"Opción 1: No es posible cumplir con el requerimiento de {cable_requerido} metros usando un solo carrete con merma mayor a 30 metros.")
+
+    if carretes_ideal_2:
+        print(f"\nOpción 2: Usar 2 carretes:")
+        for carrete_id, longitud_carrete, merma in carretes_ideal_2:
+            print(f"Carrete {carrete_id} puede cumplir con la mitad del requerimiento. Tiene {longitud_carrete} metros disponibles.")
+            print(f"Merma después de usar el carrete: {merma} metros.")
+    else:
+        print(f"\nOpción 2: No es posible cumplir con el requerimiento de {cable_requerido} metros usando dos carretes.")
+
+    if carretes_ideal_3:
+        print(f"\nOpción 3: Usar 3 carretes:")
+        for carrete_id, longitud_carrete, merma in carretes_ideal_3:
+            print(f"Carrete {carrete_id} puede cumplir con un tercio del requerimiento. Tiene {longitud_carrete} metros disponibles.")
+            print(f"Merma después de usar el carrete: {merma} metros.")
+    else:
+        print(f"\nOpción 3: No es posible cumplir con el requerimiento de {cable_requerido} metros usando tres carretes.")
+
 
 # Datos
 datos = {
