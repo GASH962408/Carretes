@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <!-- Enlazar el archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        // Función de validación del formulario
+        function validarFormulario(event) {
+            var piezometro = document.getElementById("piezometro_id").value;
+            var cable = document.getElementById("cable_requerido").value;
+            var costo = document.getElementById("costo_por_metro").value;
+
+            // Validar que el campo de piezómeto no esté vacío
+            if (!piezometro) {
+                alert("Por favor, seleccione un piezómetro.");
+                event.preventDefault();
+                return false;
+            }
+
+            // Validar que la cantidad de cable sea un número positivo
+            if (cable <= 0 || isNaN(cable)) {
+                alert("Por favor, ingrese una cantidad de cable válida (mayor a 0).");
+                event.preventDefault();
+                return false;
+            }
+
+            // Validar que el costo por metro sea un número positivo
+            if (costo <= 0 || isNaN(costo)) {
+                alert("Por favor, ingrese un costo por metro válido (mayor a 0).");
+                event.preventDefault();
+                return false;
+            }
+
+            return true; // Si todo es válido, enviar el formulario
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Columna izquierda -->
+        <div class="left-column">
+            <h2>Formulario de Piezómetros</h2>
+            <form action="/buscar_carrete" method="POST" onsubmit="return validarFormulario(event)">
+                <label for="piezometro_id">Piezómetro:</label>
+                <input type="text" name="piezometro_id" id="piezometro_id" list="piezometros" required>
+                <datalist id="piezometros">
+                    {% for piezometro in piezometros %}
+                        <option value="{{ piezometro['Nombre'] }}">
+                    {% endfor %}
+                </datalist>
+                <br><br>
+                
+                <label for="cable_requerido">Cantidad de cable (en metros):</label>
+                <input type="number" name="cable_requerido" id="cable_requerido" required min="1">
+                <br><br>
+                
+                <label for="costo_por_metro">Costo por metro (USD):</label>
+                <input type="number" name="costo_por_metro" id="costo_por_metro" required min="0.1" step="0.01">
+                <br><br>
+                
+                <button type="submit">Calcular</button>
+            </form>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="right-column">
+            <h1>Piezómetros</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for piezometro in piezometros %}
+                    <tr>
+                        <td>{{ piezometro.ID }}</td>
+                        <td>{{ piezometro.Nombre }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

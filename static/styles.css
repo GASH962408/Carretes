@@ -1,46 +1,46 @@
-/* Aseguramos que el contenedor sea un grid */
+/* static/styles.css */
+
+/* Estilo general de la página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Contenedor principal con dos columnas */
 .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas, cada una con el mismo tamaño */
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Estilo para la columna izquierda */
-.left-column {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-}
-
-/* Estilo para la columna derecha */
-.right-column {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-}
-
-/* Estilo para las tablas */
-table {
+    display: flex;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    height: 100vh;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
+/* Columna izquierda */
+.left-column {
+    width: 70%;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Columna derecha */
+.right-column {
+    width: 30%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Estilo de la tabla */
+table {
+    width:auto;
+    border-collapse: collapse;
 }
 
 th, td {
     padding: 8px;
-    text-align: left;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
 th {
     background-color: #f2f2f2;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
 }

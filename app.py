@@ -1,20 +1,16 @@
-# app.py
-from flask import Flask, render_template, request
-from logic import buscar_carrete
+from flask import Flask, render_template
+from data import obtener_datos  # Importar la función que obtiene los datos
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route('/')
 def home():
-    if request.method == "POST":
-        piezometro_id = int(request.form["piezometro_id"])
-        cable_requerido = int(request.form["cable_requerido"])
-        costo_por_metro = float(request.form["costo_por_metro"])
-        
-        result = buscar_carrete(piezometro_id, cable_requerido, costo_por_metro)
-        return render_template("index.html", result=result)
+    # Obtener los datos
+    datos = obtener_datos()  # Aquí obtenemos los datos
+    piezometros = datos["piezometros"]  # Extraemos la lista de piezómetros
 
-    return render_template("index.html", result=None)
+    # Pasamos la lista de piezómetros al template
+    return render_template('home.html', piezometros=piezometros)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
