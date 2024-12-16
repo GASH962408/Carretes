@@ -5,19 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar Carrete</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <!-- Font Awesome CDN para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <ul class="navbar-links">
+                <li><a href="#">Piezómetros <i class="fas fa-tachometer-alt"></i></a></li>
+                <li><a href="#">Carretes <i class="fas fa-cogs"></i></a></li>
+                <li><a href="#">Contacto <i class="fas fa-phone"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenedor principal -->
     <div class="container">
+        <!-- Columna izquierda: Formulario -->
         <div class="left-column">
             <h1>Buscar Carrete</h1>
             <form method="POST">
-                <label for="piezometro_id">ID Piezómetro:</label>
+                <label for="piezometro_id">
+                    <i class="fas fa-id-badge"></i> ID Piezómetro:
+                </label>
                 <input type="number" name="piezometro_id" min="1" required><br><br>
-                <label for="cable_requerido">Cable Requerido (metros):</label>
+
+                <label for="cable_requerido">
+                    <i class="fas fa-cable"></i> Cable Requerido (metros):
+                </label>
                 <input type="number" name="cable_requerido" min="1" required><br><br>
-                <label for="costo_por_metro">Costo por metro (USD):</label>
+
+                <label for="costo_por_metro">
+                    <i class="fas fa-dollar-sign"></i> Costo por metro (USD):
+                </label>
                 <input type="number" name="costo_por_metro" min="1" required><br><br>
-                <button type="submit">Buscar</button>
+
+                <button type="submit">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
             </form>
 
             {% if resultados %}
@@ -41,6 +70,8 @@
                 </ul>
             {% endif %}
         </div>
+
+        <!-- Columna derecha: Tabla de Piezómetros -->
         <div class="right-column">
             <h2>Lista de Piezómetros</h2>
             <table>
@@ -48,6 +79,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,10 +87,18 @@
                     <tr>
                         <td>{{ piezometro.ID }}</td>
                         <td>{{ piezometro.Nombre }}</td>
+                        <td>
+                            <a href="#"><i class="fas fa-eye"></i></a>
+                            <a href="#"><i class="fas fa-edit"></i></a>
+                            <a href="#"><i class="fas fa-trash-alt"></i></a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>

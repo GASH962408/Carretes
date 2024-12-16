@@ -1,23 +1,206 @@
+/* Estilos para el Navbar */
+.navbar {
+    background-color: #2c3e50; /* Fondo oscuro */
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que el navbar esté encima del contenido */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar-logo {
+    font-size: 1.6rem;
+    color: #ecf0f1; /* Color claro */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo i {
+    margin-right: 10px;
+}
+
+.navbar-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-links li {
+    margin-left: 20px;
+}
+
+.navbar-links a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    color: #3498db; /* Azul cuando pasa el cursor */
+}
+
+.navbar-links a i {
+    margin-left: 5px;
+}
+
+body {
+    padding-top: 70px; /* Ajuste para no superponer el contenido con el navbar */
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7; /* Fondo claro */
+    color: #2c3e50; /* Color oscuro para el texto */
+}
+
+/* Estilos del contenedor principal */
 .container {
     display: flex;
-  }
-  
-  .left-column {
-    flex: 1;
-    /* Ocupa todo el espacio disponible */
-    padding: 20px;
-  }
-  
-  .right-column {
-    flex: 1;
-    /* Ocupa todo el espacio disponible */
-    padding: 20px;
-  }
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 20px;
+}
 
-  table {
+/* Estilo de las columnas */
+.left-column, .right-column {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff; /* Fondo blanco para las columnas */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para la tabla */
+table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 th, td {
-    width: 50%; /* Ajusta el ancho de las columnas según sea necesario */
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db; /* Fondo azul */
+    color: #fff;
+}
+
+tr:hover {
+    background-color: #ecf0f1;
+}
+
+/* Estilo para los iconos */
+i {
+    color: #3498db; /* Azul para los iconos */
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+i:hover {
+    color: #2980b9; /* Azul más oscuro cuando pasa el cursor */
+}
+
+/* Iconos en la tabla */
+table a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+table a i {
+    font-size: 1.2rem;
+}
+
+/* Botones de formulario */
+button {
+    background-color: #3498db; /* Azul */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9; /* Azul más oscuro al pasar el cursor */
+}
+
+/* Estilos de los inputs */
+input[type="number"] {
+    width: calc(100% - 20px); /* Ajustar el ancho */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Estilo para los resultados */
+.resultados {
+    margin-top: 20px;
+}
+
+.resultados h2 {
+    color: #3498db; /* Azul para el título */
+    border-bottom: 2px solid #3498db; /* Línea debajo del título */
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+}
+
+.resultados ul {
+    list-style-type: none; /* Quita los puntos de la lista */
+    padding: 0;
+}
+
+.resultados li {
+    background-color: #f9f9f9; /* Fondo gris claro */
+    margin-bottom: 15px; /* Espaciado entre elementos */
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.resultados li:hover {
+    background-color: #eaf6ff; /* Fondo más claro al pasar el mouse */
+    transform: translateY(-3px); /* Efecto de elevación */
+}
+
+.resultados li h3 {
+    color: #2c3e50; /* Texto oscuro */
+    font-weight: bold;
+    text-decoration: underline; /* Subrayado */
+    margin-bottom: 5px;
+}
+
+.resultados li p {
+    color: #27ae60; /* Verde para el costo total */
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.resultados li ul li {
+    color: #34495e; /* Azul oscuro para los detalles */
+    font-size: 1rem;
 }
