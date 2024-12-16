@@ -2,9 +2,13 @@ from data import obtener_datos  # Importamos la función obtener_datos
 
 def buscar_carrete(piezometro_id, cable_requerido, costo_por_metro):
     datos = obtener_datos()  # Obtenemos los datos desde data.py
+
+    # Buscar el piezómetro por su ID (en lugar de buscar por Nombre)
     piezometro = next((p for p in datos["piezometros"] if p["ID"] == piezometro_id), None)
+
     if not piezometro:
-        return "El piezómetro ingresado no existe."
+        print("El piezómetro ingresado no existe.")
+        return
 
     # Opción 1: Usar un solo carrete (con merma >= 30)
     carretes = sorted(datos["carretes"].items(), key=lambda x: x[1])  # Ordenar de menor a mayor
@@ -56,7 +60,7 @@ def buscar_carrete(piezometro_id, cable_requerido, costo_por_metro):
         })
     else:
         resultados.append({
-            "opcion": "Opción 1: No es posible cumplir con el requerimiento de {cable_requerido} metros usando un solo carrete con merma mayor a 30 metros."
+            "opcion": f"Opción 1: No es posible cumplir con el requerimiento de {cable_requerido} metros usando un solo carrete con merma mayor a 30 metros."
         })
 
     if carretes_ideal_2:
@@ -64,14 +68,16 @@ def buscar_carrete(piezometro_id, cable_requerido, costo_por_metro):
         resultados.append({
             "opcion": "Opción 2: Usar 2 carretes",
             "detalles": [
-                f"Carrete {carrete_id} puede cumplir con la mitad del requerimiento. Tiene {longitud_carrete} metros disponibles.",
-                f"Merma después de usar el carrete: {merma} metros."
+                f"Carrete {carretes_ideal_2[0][0]} puede cumplir con la mitad del requerimiento. Tiene {carretes_ideal_2[0][1]} metros disponibles.",
+                f"Merma después de usar el carrete: {carretes_ideal_2[0][2]} metros.",
+                f"Carrete {carretes_ideal_2[1][0]} puede cumplir con la otra mitad del requerimiento. Tiene {carretes_ideal_2[1][1]} metros disponibles.",
+                f"Merma después de usar el carrete: {carretes_ideal_2[1][2]} metros."
             ],
             "costo_total": f"Costo total: ${costo_2} USD."
         })
     else:
         resultados.append({
-            "opcion": "Opción 2: No es posible cumplir con el requerimiento de {cable_requerido} metros usando dos carretes."
+            "opcion": f"Opción 2: No es posible cumplir con el requerimiento de {cable_requerido} metros usando dos carretes."
         })
 
     if carretes_ideal_3:
@@ -79,15 +85,27 @@ def buscar_carrete(piezometro_id, cable_requerido, costo_por_metro):
         resultados.append({
             "opcion": "Opción 3: Usar 3 carretes",
             "detalles": [
-                f"Carrete {carrete_id} puede cumplir con un tercio del requerimiento. Tiene {longitud_carrete} metros disponibles.",
-                f"Merma después de usar el carrete: {merma} metros."
+                f"Carrete {carretes_ideal_3[0][0]} puede cumplir con un tercio del requerimiento. Tiene {carretes_ideal_3[0][1]} metros disponibles.",
+                f"Merma después de usar el carrete: {carretes_ideal_3[0][2]} metros.",
+                f"Carrete {carretes_ideal_3[1][0]} puede cumplir con otro tercio del requerimiento. Tiene {carretes_ideal_3[1][1]} metros disponibles.",
+                f"Merma después de usar el carrete: {carretes_ideal_3[1][2]} metros.",
+                f"Carrete {carretes_ideal_3[2][0]} puede cumplir con el último tercio del requerimiento. Tiene {carretes_ideal_3[2][1]} metros disponibles.",
+                f"Merma después de usar el carrete: {carretes_ideal_3[2][2]} metros."
             ],
             "costo_total": f"Costo total: ${costo_3} USD."
         })
     else:
         resultados.append({
-            "opcion": "Opción 3: No es posible cumplir con el requerimiento de {cable_requerido} metros usando tres carretes."
+            "opcion": f"Opción 3: No es posible cumplir con el requerimiento de {cable_requerido} metros usando tres carretes."
         })
+
+    # Imprimir los resultados para verificar
+    print("Resultados de la búsqueda de carretes:")
+    for resultado in resultados:
+        print(resultado)
 
     return resultados  # Retornar una lista de diccionarios con los resultados
 
+
+# Llamada a la función con parámetros de ejemplo
+resultados = buscar_carrete(1, 150, 5)  # Ajusta los parámetros según sea necesario

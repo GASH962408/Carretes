@@ -1,5 +1,4 @@
 # data.py
-
 def obtener_datos():
     datos = {
         "piezometros": [
