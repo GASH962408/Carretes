@@ -1,0 +1,13 @@
+# Ignorar entorno virtual
+venv/
+
+# Ignorar archivos de compilación de Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignorar archivos de configuración del sistema operativo
+.DS_Store
+
+# Ignorar el archivo de configuración de Python
+.python-version
