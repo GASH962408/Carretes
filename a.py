@@ -12,23 +12,22 @@ def buscar_carrete(datos):
         print("Por favor, ingrese una cantidad válida de cable.")
         return
 
-    # Buscar el carrete más adecuado (el inmediato superior)
+    # Buscar el carrete más adecuado (el inmediato superior) con merma >= 30
     carretes = sorted(datos["carretes"].items(), key=lambda x: x[1])  # Ordenar de menor a mayor
     carrete_ideal = None
 
     for carrete_id, longitud in carretes:
-        if longitud >= cable_requerido:
-            carrete_ideal = (carrete_id, longitud)
+        merma = longitud - cable_requerido
+        if longitud >= cable_requerido and merma >= 30:
+            carrete_ideal = (carrete_id, longitud, merma)
             break
 
     if not carrete_ideal:
-        print(f"No es posible cumplir con el requerimiento de {cable_requerido} metros usando un solo carrete.")
+        print(f"No es posible cumplir con el requerimiento de {cable_requerido} metros usando un solo carrete, con una merma de al menos 30 metros.")
     else:
-        carrete_id, longitud_carrete = carrete_ideal
-        merma = longitud_carrete - cable_requerido
-        print(f"Para 1 carrete : El carrete {carrete_id} puede cumplir con el requerimiento. Tiene {longitud_carrete} metros disponibles.")
+        carrete_id, longitud_carrete, merma = carrete_ideal
+        print(f"El carrete {carrete_id} puede cumplir con el requerimiento. Tiene {longitud_carrete} metros disponibles.")
         print(f"Merma después de usar el carrete: {merma} metros.")
-
 
 # Datos
 datos = {
