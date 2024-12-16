@@ -12,6 +12,12 @@ def buscar_carrete(datos):
         print("Por favor, ingrese una cantidad válida de cable.")
         return
 
+    # Solicitar el costo por metro de cable en USD
+    costo_por_metro = float(input("Ingresar costo en USD por metro: "))
+    if costo_por_metro <= 0:
+        print("Por favor, ingrese un costo válido por metro.")
+        return
+
     # Opción 1: Usar un solo carrete (con merma >= 30)
     carretes = sorted(datos["carretes"].items(), key=lambda x: x[1])  # Ordenar de menor a mayor
     carrete_ideal_1 = None
@@ -54,24 +60,33 @@ def buscar_carrete(datos):
 
     if carrete_ideal_1:
         carrete_id, longitud_carrete, merma = carrete_ideal_1
+        costo_1 = round(cable_requerido * costo_por_metro, 2)
         print(f"Opción 1: Usar 1 carrete: El carrete {carrete_id} puede cumplir con el requerimiento. Tiene {longitud_carrete} metros disponibles.")
         print(f"Merma después de usar el carrete: {merma} metros.")
+        print(f"Costo total: ${costo_1} USD.")
+
     else:
         print(f"Opción 1: No es posible cumplir con el requerimiento de {cable_requerido} metros usando un solo carrete con merma mayor a 30 metros.")
 
     if carretes_ideal_2:
         print(f"\nOpción 2: Usar 2 carretes:")
+        costo_2 = round(cable_requerido * costo_por_metro + 15, 2)  # Añadir el costo del empalme
         for carrete_id, longitud_carrete, merma in carretes_ideal_2:
             print(f"Carrete {carrete_id} puede cumplir con la mitad del requerimiento. Tiene {longitud_carrete} metros disponibles.")
             print(f"Merma después de usar el carrete: {merma} metros.")
+        print(f"Costo total: ${costo_2} USD.")
+
     else:
         print(f"\nOpción 2: No es posible cumplir con el requerimiento de {cable_requerido} metros usando dos carretes.")
 
     if carretes_ideal_3:
         print(f"\nOpción 3: Usar 3 carretes:")
+        costo_3 = round(cable_requerido * costo_por_metro + 30, 2)  # Añadir el costo del empalme
         for carrete_id, longitud_carrete, merma in carretes_ideal_3:
             print(f"Carrete {carrete_id} puede cumplir con un tercio del requerimiento. Tiene {longitud_carrete} metros disponibles.")
             print(f"Merma después de usar el carrete: {merma} metros.")
+        print(f"Costo total: ${costo_3} USD.")
+
     else:
         print(f"\nOpción 3: No es posible cumplir con el requerimiento de {cable_requerido} metros usando tres carretes.")
 
