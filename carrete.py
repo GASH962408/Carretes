@@ -51,12 +51,12 @@ def buscar_carrete(piezometro_id, cable_requerido, costo_por_metro):
     if carrete_ideal_1:
         costo_1 = round(cable_requerido * costo_por_metro, 2)
         resultados.append({
-            "opcion": "Opción 1: Usar 1 carrete",
+            "opcion": "Opción : 1 carrete",
             "detalles": [
                 f"El carrete {carrete_ideal_1[0]} puede cumplir con el requerimiento. Tiene {carrete_ideal_1[1]} metros disponibles.",
-                f"Merma después de usar el carrete: {carrete_ideal_1[2]} metros.",
-                f"Costo total: ${costo_1} USD."
-            ]
+                f"Merma después de usar el carrete: {carrete_ideal_1[2]} metros."
+            ],
+            "costo_total": f"Costo total: ${costo_1} USD."  # Añadir la clave 'costo_total'
         })
     else:
         resultados.append({
@@ -66,10 +66,11 @@ def buscar_carrete(piezometro_id, cable_requerido, costo_por_metro):
     if carretes_ideal_2:
         costo_2 = round(cable_requerido * costo_por_metro + 15, 2)  # Añadir el costo del empalme
         resultados.append({
-            "opcion": "Opción 2: Usar 2 carretes",
+            "opcion": "Opción : 2 carretes",
             "detalles": [
                 f"Carrete {carretes_ideal_2[0][0]} puede cumplir con la mitad del requerimiento. Tiene {carretes_ideal_2[0][1]} metros disponibles.",
                 f"Merma después de usar el carrete: {carretes_ideal_2[0][2]} metros.",
+                f" ",
                 f"Carrete {carretes_ideal_2[1][0]} puede cumplir con la otra mitad del requerimiento. Tiene {carretes_ideal_2[1][1]} metros disponibles.",
                 f"Merma después de usar el carrete: {carretes_ideal_2[1][2]} metros."
             ],
@@ -83,12 +84,14 @@ def buscar_carrete(piezometro_id, cable_requerido, costo_por_metro):
     if carretes_ideal_3:
         costo_3 = round(cable_requerido * costo_por_metro + 30, 2)  # Añadir el costo del empalme
         resultados.append({
-            "opcion": "Opción 3: Usar 3 carretes",
+            "opcion": "Opción: 3 carretes",
             "detalles": [
                 f"Carrete {carretes_ideal_3[0][0]} puede cumplir con un tercio del requerimiento. Tiene {carretes_ideal_3[0][1]} metros disponibles.",
                 f"Merma después de usar el carrete: {carretes_ideal_3[0][2]} metros.",
+                f" ",
                 f"Carrete {carretes_ideal_3[1][0]} puede cumplir con otro tercio del requerimiento. Tiene {carretes_ideal_3[1][1]} metros disponibles.",
                 f"Merma después de usar el carrete: {carretes_ideal_3[1][2]} metros.",
+                f" ",
                 f"Carrete {carretes_ideal_3[2][0]} puede cumplir con el último tercio del requerimiento. Tiene {carretes_ideal_3[2][1]} metros disponibles.",
                 f"Merma después de usar el carrete: {carretes_ideal_3[2][2]} metros."
             ],

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar Carrete</title>
+    <title>Calculo Carrete </title>
     <link rel="stylesheet" href="/static/styles.css">
     <!-- Font Awesome CDN para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -16,9 +16,8 @@
                 <i class="fas fa-home"></i> Inicio
             </a>
             <ul class="navbar-links">
-                <li><a href="#">Piezómetros <i class="fas fa-tachometer-alt"></i></a></li>
+                <li><a href="#">Piezómetros<i class="fas fa-tachometer-alt"></i></a></li>
                 <li><a href="#">Carretes <i class="fas fa-cogs"></i></a></li>
-                <li><a href="#">Contacto <i class="fas fa-phone"></i></a></li>
             </ul>
         </div>
     </nav>
@@ -27,7 +26,7 @@
     <div class="container">
         <!-- Columna izquierda: Formulario -->
         <div class="left-column">
-            <h1>Buscar Carrete</h1>
+            <h1>Calcular Carrete - Alvaro Gabriel Rivas Diaz</h1>
             <form method="POST">
                 <label for="piezometro_id">
                     <i class="fas fa-id-badge"></i> ID Piezómetro:
@@ -45,25 +44,25 @@
                 <input type="number" name="costo_por_metro" min="1" required><br><br>
 
                 <button type="submit">
-                    <i class="fas fa-search"></i> Buscar
+                    <i class="fas fa-search"></i> Calcular
                 </button>
             </form>
 
             {% if resultados %}
                 <h2>Resultados:</h2>
-                <ul>
+                <ul class="resultados-lista">
                     {% for resultado in resultados %}
-                        <li>
-                            <h3>{{ resultado.opcion }}</h3>
+                        <li class="resultado-item">
+                            <h3 class="resultado-opcion">{{ resultado.opcion }}</h3>
                             {% if resultado.detalles %}
-                                <ul>
+                                <ul class="detalles-lista">
                                     {% for detalle in resultado.detalles %}
-                                        <li>{{ detalle }}</li>
+                                        <li class="detalle-item">{{ detalle }}</li>
                                     {% endfor %}
                                 </ul>
                             {% endif %}
                             {% if resultado.costo_total %}
-                                <p>{{ resultado.costo_total }}</p>
+                                <p class="costo-total">{{ resultado.costo_total }}</p>
                             {% endif %}
                         </li>
                     {% endfor %}

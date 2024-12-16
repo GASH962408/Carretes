@@ -1,12 +1,20 @@
-/* Estilos para el Navbar */
+/* Estilos generales del body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #2e3d49;
+}
+
+/* Navbar */
 .navbar {
-    background-color: #2c3e50; /* Fondo oscuro */
+    background-color: #007bff;
     padding: 15px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Asegura que el navbar esté encima del contenido */
 }
 
 .navbar-container {
@@ -19,22 +27,16 @@
 }
 
 .navbar-logo {
-    font-size: 1.6rem;
-    color: #ecf0f1; /* Color claro */
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-.navbar-logo i {
-    margin-right: 10px;
 }
 
 .navbar-links {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
+    margin: 0;
 }
 
 .navbar-links li {
@@ -42,165 +44,153 @@
 }
 
 .navbar-links a {
-    color: #ecf0f1;
+    color: white;
     text-decoration: none;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease;
+    font-size: 1.1em;
 }
 
 .navbar-links a:hover {
-    color: #3498db; /* Azul cuando pasa el cursor */
+    text-decoration: underline;
 }
 
-.navbar-links a i {
-    margin-left: 5px;
-}
-
-body {
-    padding-top: 70px; /* Ajuste para no superponer el contenido con el navbar */
-    font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7; /* Fondo claro */
-    color: #2c3e50; /* Color oscuro para el texto */
-}
-
-/* Estilos del contenedor principal */
+/* Contenedor principal */
 .container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 30px;
     padding: 0 20px;
 }
 
-/* Estilo de las columnas */
-.left-column, .right-column {
-    flex: 1;
+/* Columna izquierda: Formulario */
+.left-column {
+    width: 45%;
+    background-color: #ffffff;
     padding: 20px;
-    background-color: #fff; /* Fondo blanco para las columnas */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para la tabla */
-table {
+.left-column h1 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #2e3d49;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+form button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Resultados */
+.resultados-lista {
+    list-style-type: none;
+    padding: 0;
+}
+
+.resultado-item {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resultado-opcion {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2e3d49;
+}
+
+.detalles-lista {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.detalle-item {
+    font-size: 1em;
+    color: #5f6d7e;
+}
+
+.costo-total {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #28a745;  /* Verde */
+    margin-top: 10px;
+}
+
+/* Estilo para resultados que no cumplen */
+.resultado-item.no-cumple .resultado-opcion {
+    color: #dc3545;  /* Rojo para opciones que no cumplen */
+}
+
+/* Columna derecha: Tabla de Piezómetros */
+.right-column {
+    width: 45%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.right-column table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th, td {
-    padding: 10px;
+.right-column th, .right-column td {
+    padding: 12px;
     text-align: left;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
-th {
-    background-color: #3498db; /* Fondo azul */
-    color: #fff;
+.right-column th {
+    background-color: #f1f1f1;
 }
 
-tr:hover {
-    background-color: #ecf0f1;
-}
-
-/* Estilo para los iconos */
-i {
-    color: #3498db; /* Azul para los iconos */
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-}
-
-i:hover {
-    color: #2980b9; /* Azul más oscuro cuando pasa el cursor */
-}
-
-/* Iconos en la tabla */
-table a {
-    text-decoration: none;
+.right-column td a {
     margin-right: 10px;
+    color: #007bff;
+    text-decoration: none;
 }
 
-table a i {
-    font-size: 1.2rem;
+.right-column td a:hover {
+    text-decoration: underline;
 }
 
-/* Botones de formulario */
-button {
-    background-color: #3498db; /* Azul */
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
 
-button:hover {
-    background-color: #2980b9; /* Azul más oscuro al pasar el cursor */
-}
-
-/* Estilos de los inputs */
-input[type="number"] {
-    width: calc(100% - 20px); /* Ajustar el ancho */
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-label {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    display: block;
-}
-
-/* Estilo para los resultados */
-.resultados {
-    margin-top: 20px;
-}
-
-.resultados h2 {
-    color: #3498db; /* Azul para el título */
-    border-bottom: 2px solid #3498db; /* Línea debajo del título */
-    padding-bottom: 5px;
-    font-size: 1.4rem;
-}
-
-.resultados ul {
-    list-style-type: none; /* Quita los puntos de la lista */
-    padding: 0;
-}
-
-.resultados li {
-    background-color: #f9f9f9; /* Fondo gris claro */
-    margin-bottom: 15px; /* Espaciado entre elementos */
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.resultados li:hover {
-    background-color: #eaf6ff; /* Fondo más claro al pasar el mouse */
-    transform: translateY(-3px); /* Efecto de elevación */
-}
-
-.resultados li h3 {
-    color: #2c3e50; /* Texto oscuro */
-    font-weight: bold;
-    text-decoration: underline; /* Subrayado */
-    margin-bottom: 5px;
-}
-
-.resultados li p {
-    color: #27ae60; /* Verde para el costo total */
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-.resultados li ul li {
-    color: #34495e; /* Azul oscuro para los detalles */
-    font-size: 1rem;
+    .left-column, .right-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
