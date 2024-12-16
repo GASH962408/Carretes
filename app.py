@@ -19,7 +19,7 @@ def index():
         # Llamar a la función buscar_carrete para obtener los resultados
         resultados = buscar_carrete(piezometro_id, cable_requerido, costo_por_metro)
 
-    return render_template("home.html", resultados=resultados, piezometros=piezometros)
+    return render_template("index.html", resultados=resultados, piezometros=piezometros)
 
 if __name__ == "__main__":
     app.run(debug=True)
