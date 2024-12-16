@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cálculo</title>
+</head>
+<body>
+
+    <h1>Formulario para Calcular Carrete</h1>
+    <form action="/" method="POST">
+        <label for="piezometro_id">Piezómetro ID:</label>
+        <input type="text" id="piezometro_id" name="piezometro_id" required><br><br>
+
+        <label for="cable_requerido">Cable Requerido (metros):</label>
+        <input type="text" id="cable_requerido" name="cable_requerido" required><br><br>
+
+        <label for="costo_por_metro">Costo por Metro:</label>
+        <input type="text" id="costo_por_metro" name="costo_por_metro" required><br><br>
+
+        <button type="submit">Calcular</button>
+    </form>
+
+    {% if result %}
+        <h2>Resultado: {{ result }}</h2>
+    {% endif %}
+
+</body>
+</html>
